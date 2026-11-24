@@ -17,7 +17,7 @@ skill:
   name: ours
   version: 1.2.0
 tools:
-- type: bridge_mcp
+- type: external
   allow:
   - oms_trade_flows
   - oms_confirm_conflict
@@ -28,8 +28,9 @@ tools:
   - company_lookup
   - efm_buy_basket
   - price_move
-tools_summary: Bridge MCP · oms_* → Azure SQL (in place)
+tools_summary: External data · oms_* → Azure SQL (in place)
 access:
+  foreign: true               # reads azure_oms through the federated catalog under this app's own grants
   tables:
   - ref_companies
   - efm_buy_basket
@@ -41,7 +42,6 @@ access:
   volumes:
   - skills
   - prompts
-uses_bridge: true
 max_tool_calls: 8
 timeout_s: 150
 contract_version: '1'
